@@ -1,0 +1,56 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Calculator main functions test">
+
+    <test name="Calculator Double">
+        <classes>
+            <class name="hw1.CalculatorSumTest">
+                <methods>
+                    <include name="sumDoubleTest"/>
+                </methods>
+            </class>
+            <class name="hw1.CalculatorSubtractTest">
+                <methods>
+                    <include name="subDoubleTest"/>
+                </methods>
+            </class>
+            <class name="hw1.CalculatorMultiplyTest">
+                <methods>
+                    <include name="multiplyDoubleTest"/>
+                </methods>
+            </class>
+            <class name="hw1.CalculatorDivideTest">
+                <methods>
+                    <include name="divideDoubleTest"/>
+                    <include name="divideByZeroDoubleTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="Calculator Long">
+        <classes>
+            <class name="hw1.CalculatorSumTest">
+                <methods>
+                    <include name="sumLongTest"/>
+                </methods>
+            </class>
+            <class name="hw1.CalculatorSubtractTest">
+                <methods>
+                    <include name="subLongTest"/>
+                </methods>
+            </class>
+            <class name="hw1.CalculatorMultiplyTest">
+                <methods>
+                    <include name="multiplyLongTest"/>
+                </methods>
+            </class>
+            <class name="hw1.CalculatorDivideTest">
+                <methods>
+                    <include name="divideLongTest"/>
+                    <include name="divideByZeroLongTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
