@@ -1,13 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Calculator main functions test">
-
-    <test name="Calculator sums and subtracts">
-        <classes>
-            <class name="hw1.CalculatorSumTest"/>
-            <class name="hw1.CalculatorSubtractTest"/>
-        </classes>
-    </test>
-
+<suite name="Calculator multiply and divide functions tests">
 
     <test name="Calculator multiplies and divides">
         <classes>
