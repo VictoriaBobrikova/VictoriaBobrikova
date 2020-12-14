@@ -1,6 +1,5 @@
 # Default ignored files
 /shelf/
 /.idea
-/VictoriaBobrikova.iml
-/e
+*.iml
 /target
