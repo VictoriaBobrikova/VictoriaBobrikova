@@ -1,0 +1,7 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Calculator main functions tests">
+    <suite-files>
+        <suite-file path="mult-div-calc-func-suite.xml"/>
+        <suite-file path="sum-sub-calc-func-suite.xml"/>
+    </suite-files>
+</suite>
