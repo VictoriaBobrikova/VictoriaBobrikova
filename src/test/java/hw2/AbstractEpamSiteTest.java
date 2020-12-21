@@ -3,21 +3,21 @@ package hw2;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
-public class AbstractEpamSiteTest {
+public abstract class AbstractEpamSiteTest {
 
     protected WebDriver webDriver;
 
-    @BeforeTest
+    @BeforeClass
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
     }
 
-    @AfterTest
+    @AfterClass
     public void clear() {
         webDriver.close();
     }

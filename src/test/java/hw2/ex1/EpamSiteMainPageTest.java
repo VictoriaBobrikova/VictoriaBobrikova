@@ -120,17 +120,4 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
         softAssert.assertAll();
 //    12. Close Browser - in AfterTest of Abstract class
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
