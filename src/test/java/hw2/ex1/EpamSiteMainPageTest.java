@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
 
@@ -18,67 +17,42 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
     @Test
     public void mainPageTest() {
 //    1. Open test site by URL
-        String url = "https://jdi-testing.github.io/jdi-light/index.html";
-        webDriver.get(url);
-        webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
-        softAssert.assertEquals(webDriver.getCurrentUrl(), url);
+        openMainPage();
+        softAssert.assertEquals(webDriver.getCurrentUrl(), "https://jdi-testing.github.io/jdi-light/index.html");
 //    2. Assert Browser title
         softAssert.assertEquals(webDriver.getTitle(),"Home Page");
 //    3. Perform login
-        //dropdown menu must be to log in
-        WebElement dropDownLogin = webDriver.findElement(By.xpath("//*[@class=\"uui-navigation navbar-nav navbar-right\"]"));
-        dropDownLogin.click();
-        //wait until login button appears
-        WebElement loginButton = webDriver.findElement(By.id("login-button"));
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(loginButton));
-        //now log in
-        String username = "Roman";
-        String password = "Jdi1234";
-        WebElement usernameField = webDriver.findElement(By.id("name"));
-        WebElement passwordField = webDriver.findElement(By.id("password"));
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-        loginButton.click();
+        login();
         //to check if user logged in logout button must appear
         WebElement logoutButton = webDriver.findElement(By.className("logout"));
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
         webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
         softAssert.assertEquals(logoutButton.getText(), "LOGOUT");
 //    4. Assert Username is logged in
-        String userNameExpected = "ROMAN IOVLEV";
         WebElement userName = webDriver.findElement(By.id("user-name"));
         softAssert.assertTrue(userName.isDisplayed());
-        softAssert.assertEquals(userName.getText(), userNameExpected);
+        softAssert.assertEquals(userName.getText(), LoginUser.USERNAME.getUserAttrib());
 //    5. Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> listHeaderMenu = webDriver.findElements(By.xpath("//*[@class=\"uui-navigation nav navbar-nav m-l8\"]/li"));
         //4 items
         softAssert.assertEquals(listHeaderMenu.size(), 4);
         //are displayed
-        softAssert.assertTrue(listHeaderMenu.get(0).isDisplayed());
-        softAssert.assertTrue(listHeaderMenu.get(1).isDisplayed());
-        softAssert.assertTrue(listHeaderMenu.get(2).isDisplayed());
-        softAssert.assertTrue(listHeaderMenu.get(3).isDisplayed());
+        listHeaderMenu.forEach(elemHeaderMenu -> softAssert.assertTrue(elemHeaderMenu.isDisplayed()));
         //with proper text
-        softAssert.assertEquals(listHeaderMenu.get(0).getText(), "HOME");
-        softAssert.assertEquals(listHeaderMenu.get(1).getText(), "CONTACT FORM");
-        softAssert.assertEquals(listHeaderMenu.get(2).getText(), "SERVICE");
-        softAssert.assertEquals(listHeaderMenu.get(3).getText(), "METALS & COLORS");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a[contains(text(),'Home')]")).getText(), "HOME");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a[contains(text(),'Contact form')]")).getText(),"CONTACT FORM");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a[contains(text(),'Service')]")).getText(),"SERVICE");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a[contains(text(),'Metals & Colors')]")).getText(),"METALS & COLORS");
 //    6. Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> listImgs = webDriver.findElements(By.xpath("//*[@class=\"benefit-icon\"]"));
         softAssert.assertEquals(listImgs.size(), 4);
-        softAssert.assertTrue(listImgs.get(0).isDisplayed());
-        softAssert.assertTrue(listImgs.get(1).isDisplayed());
-        softAssert.assertTrue(listImgs.get(2).isDisplayed());
-        softAssert.assertTrue(listImgs.get(3).isDisplayed());
+        listImgs.forEach(img -> softAssert.assertTrue(img.isDisplayed()));
 //    7. Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> listTextUnderImgs = webDriver.findElements(By.xpath("//*[@class=\"benefit-txt\"]"));
         //4 images
         softAssert.assertEquals(listTextUnderImgs.size(), 4);
         //are displayed
-        softAssert.assertTrue(listTextUnderImgs.get(0).isDisplayed());
-        softAssert.assertTrue(listTextUnderImgs.get(1).isDisplayed());
-        softAssert.assertTrue(listTextUnderImgs.get(2).isDisplayed());
-        softAssert.assertTrue(listTextUnderImgs.get(3).isDisplayed());
+        listTextUnderImgs.forEach(textUnderImgs -> softAssert.assertTrue(textUnderImgs.isDisplayed()));
         //with proper text
         softAssert.assertEquals(listTextUnderImgs.get(0).getText(), "To include good practices\n" +
                 "and ideas from successful\n" +
@@ -106,17 +80,18 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
         //5 items
         softAssert.assertEquals(listLeftMenu.size(), 5);
         //are displayed
-        softAssert.assertTrue(listLeftMenu.get(0).isDisplayed());
-        softAssert.assertTrue(listLeftMenu.get(1).isDisplayed());
-        softAssert.assertTrue(listLeftMenu.get(2).isDisplayed());
-        softAssert.assertTrue(listLeftMenu.get(3).isDisplayed());
-        softAssert.assertTrue(listLeftMenu.get(4).isDisplayed());
+        listLeftMenu.forEach(leftMenuElem -> softAssert.assertTrue(leftMenuElem.isDisplayed()));
         //with proper text
-        softAssert.assertEquals(listLeftMenu.get(0).getText(), "Home");
-        softAssert.assertEquals(listLeftMenu.get(1).getText(), "Contact form");
-        softAssert.assertEquals(listLeftMenu.get(2).getText(), "Service");
-        softAssert.assertEquals(listLeftMenu.get(3).getText(), "Metals & Colors");
-        softAssert.assertEquals(listLeftMenu.get(4).getText(), "Elements packs");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a/span[contains(text(),'Home')]"))
+                .getText(),"Home");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a/span[contains(text(),'Contact form')]"))
+                .getText(), "Contact form");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a/span[contains(text(),'Service')]"))
+                .getText(), "Service");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a/span[contains(text(),'Metals & Colors')]"))
+                .getText(), "Metals & Colors");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//a/span[contains(text(),'Elements packs')]"))
+                .getText(), "Elements packs");
         softAssert.assertAll();
 //    12. Close Browser - in AfterTest of Abstract class
     }

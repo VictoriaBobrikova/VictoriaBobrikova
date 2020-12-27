@@ -20,42 +20,27 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
     public void serviceDifElemPageTest() {
 
 //    1. Open test site by URL
-        String url = "https://jdi-testing.github.io/jdi-light/index.html";
-        webDriver.get(url);
+        openMainPage();
         webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
-        assertEquals(webDriver.getCurrentUrl(), url);
+        assertEquals(webDriver.getCurrentUrl(), "https://jdi-testing.github.io/jdi-light/index.html");
 //    2. Assert Browser title
         assertEquals(webDriver.getTitle(),"Home Page");
 //    3. Perform login
-        //dropdown menu must be to log in
-        WebElement dropDownLogin = webDriver.findElement(By.xpath("//*[@class=\"uui-navigation navbar-nav navbar-right\"]"));
-        dropDownLogin.click();
-        //wait until login button appears
-        WebElement loginButton = webDriver.findElement(By.id("login-button"));
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(loginButton));
-        //now log in
-        String username = "Roman";
-        String password = "Jdi1234";
-        WebElement usernameField = webDriver.findElement(By.id("name"));
-        WebElement passwordField = webDriver.findElement(By.id("password"));
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-        loginButton.click();
+        login();
         //to check if user logged in logout button must appear
         WebElement logoutButton = webDriver.findElement(By.className("logout"));
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
         webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
         assertEquals(logoutButton.getText(), "LOGOUT");
 //    4. Assert User name in the left-top side of screen that user is logged in
-        String userNameExpected = "ROMAN IOVLEV";
         WebElement userName = webDriver.findElement(By.id("user-name"));
         assertTrue(userName.isDisplayed());
-        assertEquals(userName.getText(), userNameExpected);
+        assertEquals(userName.getText(), LoginUser.USERNAME.getUserAttrib());
 //    5. Open through the header menu Service -> Different Elements Page
         String urlDifElem = "https://jdi-testing.github.io/jdi-light/different-elements.html";
-        webDriver.findElement(By.xpath("//*[@class=\"dropdown-toggle\"][1]")).click();
+        webDriver.findElement(By.xpath("//a[contains(text(),'Service')]")).click();
         webDriverWait.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//*[@class=\"dropdown-menu\"]"))));
-        webDriver.findElement(By.xpath("//*[@class=\"dropdown-menu\"]/li[8]")).click();
+        webDriver.findElement(By.xpath("//a[contains(@href,'different-elements')]")).click();
         webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
         assertEquals(webDriver.getCurrentUrl(), urlDifElem);
 //    6. Select checkboxes
@@ -73,7 +58,7 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
 //    8. Select in dropdown
         WebElement colorsForm = webDriver.findElement(By.xpath("//*[@class=\"colors\"]"));
         colorsForm.click();
-        WebElement colorOptionNeeded = webDriver.findElement(By.xpath("//option[4]"));
+        WebElement colorOptionNeeded = webDriver.findElement(By.xpath("//option[contains(text(),'Yellow')]"));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(colorOptionNeeded));
         colorOptionNeeded.click();
 //        softAssert.assertEquals(colorsForm.getText(), "Yellow"); //how to pass???
@@ -82,11 +67,14 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
         //checkbox name and its status are corresponding to selected
         //radio button name and it status is corresponding to selected
         //dropdown name and selected value is corresponding to selected
-        List<WebElement> listLogRows = webDriver.findElements(By.xpath("//*[@class=\"panel-body-list logs\"]/li"));
-        assertTrue(listLogRows.get(0).getText().contains("Colors: value changed to Yellow"));
-        assertTrue(listLogRows.get(1).getText().contains("metal: value changed to Selen"));
-        assertTrue(listLogRows.get(2).getText().contains("Wind: condition changed to true"));
-        assertTrue(listLogRows.get(3).getText().contains("Water: condition changed to true"));
+        assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'Colors')]"))
+                .getText().contains("Colors: value changed to Yellow"));
+        assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'metal')]"))
+                .getText().contains("metal: value changed to Selen"));
+        assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'Wind')]"))
+                .getText().contains("Wind: condition changed to true"));
+        assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'Water')]"))
+                .getText().contains("Water: condition changed to true"));
 //    10. Close Browser in AfterTest
     }
 }
