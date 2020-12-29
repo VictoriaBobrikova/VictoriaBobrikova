@@ -1,6 +1,7 @@
 package hw2.ex1;
 
 import hw2.AbstractEpamSiteTest;
+import hw2.enums.LoginUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,7 +32,7 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
 //    4. Assert Username is logged in
         WebElement userName = webDriver.findElement(By.id("user-name"));
         softAssert.assertTrue(userName.isDisplayed());
-        softAssert.assertEquals(userName.getText(), LoginUser.USERNAME.getUserAttrib());
+        softAssert.assertEquals(userName.getText(), LoginUser.DEFAULT_USER.getUsername());
 //    5. Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> listHeaderMenu = webDriver.findElements(By.xpath("//*[@class=\"uui-navigation nav navbar-nav m-l8\"]/li"));
         //4 items

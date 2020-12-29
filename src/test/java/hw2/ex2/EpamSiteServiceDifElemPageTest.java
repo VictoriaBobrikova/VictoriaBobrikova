@@ -1,6 +1,7 @@
 package hw2.ex2;
 
 import hw2.AbstractEpamSiteTest;
+import hw2.enums.LoginUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,7 +36,7 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
 //    4. Assert User name in the left-top side of screen that user is logged in
         WebElement userName = webDriver.findElement(By.id("user-name"));
         assertTrue(userName.isDisplayed());
-        assertEquals(userName.getText(), LoginUser.USERNAME.getUserAttrib());
+        assertEquals(userName.getText(), LoginUser.DEFAULT_USER.getUsername());
 //    5. Open through the header menu Service -> Different Elements Page
         String urlDifElem = "https://jdi-testing.github.io/jdi-light/different-elements.html";
         webDriver.findElement(By.xpath("//a[contains(text(),'Service')]")).click();

@@ -1,5 +1,6 @@
 package hw2;
 
+import hw2.enums.LoginUser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -45,24 +46,8 @@ public abstract class AbstractEpamSiteTest {
         //now log in
         WebElement usernameField = webDriver.findElement(By.id("name"));
         WebElement passwordField = webDriver.findElement(By.id("password"));
-        usernameField.sendKeys(LoginUser.LOGIN.getUserAttrib());
-        passwordField.sendKeys(LoginUser.PASSWORD.getUserAttrib());
+        usernameField.sendKeys(LoginUser.DEFAULT_USER.getLogin());
+        passwordField.sendKeys(LoginUser.DEFAULT_USER.getPassword());
         loginButton.click();
-    }
-
-    public enum LoginUser{
-        LOGIN("Roman"),
-        PASSWORD("Jdi1234"),
-        USERNAME("ROMAN IOVLEV");
-
-        String userAttrib;
-
-        LoginUser(String userAttrib) {
-            this.userAttrib = userAttrib;
-        }
-
-        public String getUserAttrib() {
-            return userAttrib;
-        }
     }
 }
