@@ -58,13 +58,11 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
                 "some external projects),\n" +
                 "wish to get more…");
 //    8. Assert that there is the iframe with “Frame Button” exists
-        WebElement iframe = webDriver.findElement(By.id("frame"));
-        softAssert.assertTrue(iframe.isDisplayed());
+        softAssert.assertTrue(mainPage.getIFrameComponent().getIframe().isDisplayed());
 //    9. Switch to the iframe and check that there is “Frame Button” in the iframe
         //firstly we save our handler to check its back later
         String mainWindowHandler = webDriver.getWindowHandle();
-        WebElement frameButton = webDriver.switchTo().frame("frame").findElement(By.id("frame-button"));
-        softAssert.assertTrue(frameButton.isDisplayed());
+        softAssert.assertTrue(mainPage.getIFrameComponent().findFrameButton(webDriver).isDisplayed());
 //    10. Switch to original window back
         webDriver.switchTo().defaultContent();
         softAssert.assertEquals(webDriver.getWindowHandle(), mainWindowHandler);

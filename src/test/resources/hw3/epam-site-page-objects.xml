@@ -3,8 +3,8 @@
 
     <test name="EPAM site">
         <classes>
-<!--            <class name="hw2.ex1.EpamSiteMainPageTest"/>-->
-<!--            <class name="hw2.ex2.EpamSiteServiceDifElemPageTest"/>-->
+            <class name="hw3.test.EpamSiteMainPageTest"/>
+            <class name="hw3.test.EpamSiteServiceDifElemPageTest"/>
         </classes>
     </test>
 </suite>
