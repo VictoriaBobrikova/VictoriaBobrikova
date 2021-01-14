@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LeftMenuComponent extends AbstractComponent {
 
-    @FindBy(xpath = "//ul[@class=\"sidebar-menu\"]/li")
+    @FindBy(xpath = "//ul[@class='sidebar-menu']/li")
     private List<WebElement> listLeftMenu;
 
     @Override

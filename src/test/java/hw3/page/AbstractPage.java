@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractPage {
 
-    protected WebDriver webDriver;
+    public WebDriver webDriver;
 
     private HeaderMenuComponent headerMenuComponent;
     private LeftMenuComponent leftMenuComponent;

@@ -7,11 +7,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class IFrameComponent {
 
-    WebDriver webDriver;
+    public WebDriver webDriver;
 
     public IFrameComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
-    };
+    }
 
     @FindBy(id = "frame")
     private WebElement iframe;

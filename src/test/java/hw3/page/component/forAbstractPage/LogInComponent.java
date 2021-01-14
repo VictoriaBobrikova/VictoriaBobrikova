@@ -5,10 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.asserts.SoftAssert;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class LogInComponent {
@@ -18,7 +15,7 @@ public class LogInComponent {
     WaitActions waitActions;
 
     //dropdown menu must be to log in
-    @FindBy(xpath = "//*[@class=\"uui-navigation navbar-nav navbar-right\"]")
+    @FindBy(xpath = "//*[@class='uui-navigation navbar-nav navbar-right']")
     private WebElement dropDownLogin;
     @FindBy(id = "login-button")
     private WebElement loginButton;
@@ -32,17 +29,15 @@ public class LogInComponent {
     private WebElement userName;
 
     public void login() {
-        Properties property = new Properties();
-//        File file = new File("user-data.properties");
-//        System.out.println(file.getAbsolutePath());
+        Properties properties = new Properties();
 
         try {
             InputStream input = getClass().getClassLoader()
-                    .getResourceAsStream("src/test/resources/hw3/user-data.properties");
-            property.load(input);
+                    .getResourceAsStream("src/test/resources/hw3/properties/user-data.properties");
+            properties.load(input);
 
-            String login = property.getProperty("login");
-            String password = property.getProperty("password");
+            String login = properties.getProperty("login");
+            String password = properties.getProperty("password");
 
             dropDownLogin.click();
             //wait until login button appears
@@ -56,6 +51,7 @@ public class LogInComponent {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void verifyLogoutButton(String expButton) {

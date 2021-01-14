@@ -7,7 +7,7 @@ import java.util.List;
 
 public class HeaderMenuComponent extends AbstractComponent {
 
-    @FindBy(xpath = "//*[@class=\"uui-navigation nav navbar-nav m-l8\"]/li")
+    @FindBy(xpath = "//*[@class='uui-navigation nav navbar-nav m-l8']/li")
     private List<WebElement> listHeaderMenu;
 
     @Override

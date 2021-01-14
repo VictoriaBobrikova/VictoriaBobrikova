@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 
 public abstract class AbstractEpamSiteTest {
 
-    protected WebDriver webDriver;
+    public WebDriver webDriver;
 
     @BeforeClass
     public void setUp() {

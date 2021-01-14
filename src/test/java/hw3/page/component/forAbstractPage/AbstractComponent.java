@@ -8,6 +8,10 @@ import java.util.List;
 
 public abstract class AbstractComponent {
 
+//    public AbstractComponent() {
+//
+//    }
+
     public abstract int countItems();
     public abstract boolean itemsAreDisplayed();
 }

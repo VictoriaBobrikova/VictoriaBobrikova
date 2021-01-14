@@ -14,7 +14,7 @@ public class MainPage extends AbstractPage {
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
-        PageFactory.initElements(webDriver, this);
+//        PageFactory.initElements(webDriver, this);
         iFrameComponent = new IFrameComponent(webDriver);
         benefitsComponent = new BenefitsComponent();
     }

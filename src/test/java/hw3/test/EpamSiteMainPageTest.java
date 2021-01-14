@@ -2,11 +2,8 @@ package hw3.test;
 
 import hw3.page.MainPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import java.util.List;
 
 public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
 
@@ -27,7 +24,7 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
 //    4. Assert Username is logged in
         mainPage.getLogInComponent().verifyUsername();
 //    5. Assert that there are 4 items on the header section are displayed and they have proper texts
-        //4 items
+//        4 items
         softAssert.assertEquals(mainPage.getHeaderMenuComponent().countItems(), 4);
         //are displayed
         softAssert.assertTrue(mainPage.getHeaderMenuComponent().itemsAreDisplayed());
@@ -37,23 +34,21 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
         softAssert.assertEquals(webDriver.findElement(By.xpath("//a[contains(text(),'Service')]")).getText(),"SERVICE");
         softAssert.assertEquals(webDriver.findElement(By.xpath("//a[contains(text(),'Metals & Colors')]")).getText(),"METALS & COLORS");
 //    6. Assert that there are 4 images on the Index Page and they are displayed
-        List<WebElement> listImgs = webDriver.findElements(By.xpath("//*[@class=\"benefit-icon\"]"));
-        softAssert.assertEquals(listImgs.size(), 4);
-        listImgs.forEach(img -> softAssert.assertTrue(img.isDisplayed()));
+        softAssert.assertEquals(mainPage.getBenefitsComponent().countImgs(), 4);
+        softAssert.assertTrue(mainPage.getBenefitsComponent().imgsAreDisplayed());
 //    7. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> listTextUnderImgs = webDriver.findElements(By.xpath("//*[@class=\"benefit-txt\"]"));
         //4 images
-        softAssert.assertEquals(listTextUnderImgs.size(), 4);
+        softAssert.assertEquals(mainPage.getBenefitsComponent().countTextUnderImgs(), 4);
         //are displayed
-        listTextUnderImgs.forEach(textUnderImgs -> softAssert.assertTrue(textUnderImgs.isDisplayed()));
+        softAssert.assertTrue(mainPage.getBenefitsComponent().textUnderImgsIsDisplayed());
         //with proper text
-        softAssert.assertEquals(listTextUnderImgs.get(0).getText(), "To include good practices\n" +
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//span[contains(text(),'include')]")).getText(), "To include good practices\n" +
                 "and ideas from successful\n" +
                 "EPAM project");
-        softAssert.assertEquals(listTextUnderImgs.get(1).getText(), "To be flexible and\n" +
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//span[contains(text(),'flexible')]")).getText(), "To be flexible and\n" +
                 "customizable");
-        softAssert.assertEquals(listTextUnderImgs.get(2).getText(),"To be multiplatform");
-        softAssert.assertEquals(listTextUnderImgs.get(3).getText(),"Already have good base\n" +
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//span[contains(text(),'multiplatform')]")).getText(),"To be multiplatform");
+        softAssert.assertEquals(webDriver.findElement(By.xpath("//span[contains(text(),'Already')]")).getText(),"Already have good base\n" +
                 "(about 20 internal and\n" +
                 "some external projects),\n" +
                 "wish to get more…");
@@ -67,11 +62,10 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
         webDriver.switchTo().defaultContent();
         softAssert.assertEquals(webDriver.getWindowHandle(), mainWindowHandler);
 //    11. Assert that there are 5 items in the Left Section are displayed and they have proper text
-        List<WebElement> listLeftMenu = webDriver.findElements(By.xpath("//ul[@class=\"sidebar-menu\"]/li"));
         //5 items
-        softAssert.assertEquals(listLeftMenu.size(), 5);
+        softAssert.assertEquals(mainPage.getLeftMenuComponent().countItems(), 5);
         //are displayed
-        listLeftMenu.forEach(leftMenuElem -> softAssert.assertTrue(leftMenuElem.isDisplayed()));
+        softAssert.assertTrue(mainPage.getLeftMenuComponent().itemsAreDisplayed());
         //with proper text
         softAssert.assertEquals(webDriver.findElement(By.xpath("//a/span[contains(text(),'Home')]"))
                 .getText(),"Home");
