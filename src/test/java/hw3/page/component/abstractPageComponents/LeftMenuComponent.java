@@ -1,4 +1,4 @@
-package hw3.page.component.forAbstractPage;
+package hw3.page.component.abstractPageComponents;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LeftMenuComponent extends AbstractComponent {
 
-    @FindBy(xpath = "//ul[@class='sidebar-menu']/li")
+    @FindBy(xpath = "//ul[@class=\"sidebar-menu\"]/li")
     private List<WebElement> listLeftMenu;
 
     @Override

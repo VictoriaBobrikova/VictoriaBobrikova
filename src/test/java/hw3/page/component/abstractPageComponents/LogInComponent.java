@@ -1,21 +1,25 @@
-package hw3.page.component.forAbstractPage;
+package hw3.page.component.abstractPageComponents;
 
 import hw3.utils.WaitActions;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.asserts.SoftAssert;
 
 import java.io.*;
 import java.util.Properties;
 
 public class LogInComponent {
 
-    SoftAssert softAssert = new SoftAssert();
-
     WaitActions waitActions;
+    WebDriver webDriver;
+
+    public LogInComponent(WebDriver webDriver) {
+        this.webDriver = webDriver;
+        waitActions = new WaitActions(webDriver);
+    }
 
     //dropdown menu must be to log in
-    @FindBy(xpath = "//*[@class='uui-navigation navbar-nav navbar-right']")
+    @FindBy(xpath = "//*[@class=\"uui-navigation navbar-nav navbar-right\"]")
     private WebElement dropDownLogin;
     @FindBy(id = "login-button")
     private WebElement loginButton;
@@ -33,7 +37,7 @@ public class LogInComponent {
 
         try {
             InputStream input = getClass().getClassLoader()
-                    .getResourceAsStream("src/test/resources/hw3/properties/user-data.properties");
+                    .getResourceAsStream("hw3/user-data.properties");
             properties.load(input);
 
             String login = properties.getProperty("login");
@@ -51,31 +55,28 @@ public class LogInComponent {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public void verifyLogoutButton(String expButton) {
+    public boolean verifyLogoutButton(String expButton) {
         //to check if user logged in logout button must appear
         waitActions.waitUntilCondition(ex -> logoutButton.isDisplayed());
-        softAssert.assertEquals(logoutButton.getText(), expButton);
+        return logoutButton.getText().equals(expButton);
     }
 
-    public void verifyUsername() {
+    public boolean verifyUsername() {
         Properties property = new Properties();
+        String username = "";
 
         try {
             InputStream input = getClass().getClassLoader()
-                    .getResourceAsStream("src/test/resources/hw3/user-data.properties");
+                    .getResourceAsStream("hw3/user-data.properties");
             property.load(input);
-
-            String username = property.getProperty("username");
-
-            softAssert.assertTrue(userName.isDisplayed());
-            softAssert.assertEquals(userName.getText(), username);
+            username = property.getProperty("username");
         } catch (FileNotFoundException e) {
             System.err.println("File Properties Not Found");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return userName.isDisplayed() && userName.getText().equals(username);
     }
 }

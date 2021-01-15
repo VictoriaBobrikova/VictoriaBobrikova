@@ -1,4 +1,4 @@
-package hw3.page.component;
+package hw3.page.component.mainPageComponents;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

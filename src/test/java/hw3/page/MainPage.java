@@ -1,10 +1,8 @@
 package hw3.page;
 
-import hw3.page.component.BenefitsComponent;
-import hw3.page.component.IFrameComponent;
+import hw3.page.component.mainPageComponents.BenefitsComponent;
+import hw3.page.component.mainPageComponents.IFrameComponent;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MainPage extends AbstractPage {
@@ -14,9 +12,11 @@ public class MainPage extends AbstractPage {
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
-//        PageFactory.initElements(webDriver, this);
         iFrameComponent = new IFrameComponent(webDriver);
         benefitsComponent = new BenefitsComponent();
+
+        PageFactory.initElements(webDriver, iFrameComponent);
+        PageFactory.initElements(webDriver, benefitsComponent);
     }
 
     public IFrameComponent getIFrameComponent() {

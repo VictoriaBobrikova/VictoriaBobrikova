@@ -1,9 +1,12 @@
 package hw3.test;
 
+import hw3.page.DifferentElementsPage;
 import hw3.page.MainPage;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import static org.testng.Assert.assertTrue;
 
 public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
 
@@ -13,18 +16,19 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
     public void mainPageTest() {
 //    1. Open test site by URL
         MainPage mainPage = new MainPage(webDriver);
+        DifferentElementsPage differentElementsPage = new DifferentElementsPage(webDriver);
         mainPage.openMainPage();
-        mainPage.verifySiteUrl("https://jdi-testing.github.io/jdi-light/index.html");
+        assertTrue(mainPage.verifyPageUrl("https://jdi-testing.github.io/jdi-light/index.html"));
 //    2. Assert Browser title
-        mainPage.verifyBrowserTitle("Home Page");
+        softAssert.assertTrue(mainPage.verifyBrowserTitle("Home Page"));
 //    3. Perform login
         mainPage.getLogInComponent().login();
         //to check if user logged in logout button must appear
-        mainPage.getLogInComponent().verifyLogoutButton("LOGOUT");
+        assertTrue(mainPage.getLogInComponent().verifyLogoutButton("LOGOUT"));
 //    4. Assert Username is logged in
-        mainPage.getLogInComponent().verifyUsername();
+        softAssert.assertTrue(mainPage.getLogInComponent().verifyUsername());
 //    5. Assert that there are 4 items on the header section are displayed and they have proper texts
-//        4 items
+        //4 items
         softAssert.assertEquals(mainPage.getHeaderMenuComponent().countItems(), 4);
         //are displayed
         softAssert.assertTrue(mainPage.getHeaderMenuComponent().itemsAreDisplayed());
