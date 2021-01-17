@@ -13,11 +13,6 @@ public class LogInComponent {
     WaitActions waitActions;
     WebDriver webDriver;
 
-    public LogInComponent(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        waitActions = new WaitActions(webDriver);
-    }
-
     //dropdown menu must be to log in
     @FindBy(xpath = "//*[@class=\"uui-navigation navbar-nav navbar-right\"]")
     private WebElement dropDownLogin;
@@ -31,6 +26,11 @@ public class LogInComponent {
     private WebElement logoutButton;
     @FindBy(id = "user-name")
     private WebElement userName;
+
+    public LogInComponent(WebDriver webDriver) {
+        this.webDriver = webDriver;
+        waitActions = new WaitActions(webDriver);
+    }
 
     public void login() {
         Properties properties = new Properties();

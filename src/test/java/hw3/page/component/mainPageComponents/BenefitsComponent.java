@@ -12,6 +12,8 @@ public class BenefitsComponent{
     @FindBy(xpath = "//*[@class=\"benefit-txt\"]")
     private List<WebElement> listTextUnderImgs;
 
+    public List<WebElement> getListTextUnderImgs() { return listTextUnderImgs; }
+
     public int countImgs() {
         return listImgs.size();
     }

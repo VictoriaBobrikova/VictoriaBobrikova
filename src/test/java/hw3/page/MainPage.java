@@ -22,7 +22,6 @@ public class MainPage extends AbstractPage {
     public IFrameComponent getIFrameComponent() {
         return iFrameComponent;
     }
-
     public BenefitsComponent getBenefitsComponent() {
         return benefitsComponent;
     }

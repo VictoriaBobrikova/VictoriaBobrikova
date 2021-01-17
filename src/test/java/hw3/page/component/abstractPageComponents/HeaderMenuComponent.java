@@ -13,19 +13,19 @@ public class HeaderMenuComponent extends AbstractComponent {
     WaitActions waitActions;
     WebDriver webDriver;
 
+    @FindBy(xpath = "//*[@class=\"uui-navigation nav navbar-nav m-l8\"]/li")
+    private List<WebElement> listHeaderMenu;
+    @FindBy(xpath = "//*[@class=\"dropdown-menu\"]")
+    private WebElement serviceDropDownMenu;
+    @FindBy(xpath = "//*[@class=\"dropdown-menu\"]/li")
+    private List<WebElement> serviceDropDownMenuItems;
+
     public HeaderMenuComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
         waitActions = new WaitActions(webDriver);
     }
 
-    @FindBy(xpath = "//*[@class=\"uui-navigation nav navbar-nav m-l8\"]/li")
-    private List<WebElement> listHeaderMenu;
-
-    @FindBy(xpath = "//*[@class=\"dropdown-menu\"]")
-    private WebElement serviceDropDownMenu;
-
-    @FindBy(xpath = "//*[@class=\"dropdown-menu\"]/li")
-    private List<WebElement> serviceDropDownMenuItems;
+    public List<WebElement> getListHeaderMenu() { return listHeaderMenu; }
 
     @Override
     public int countItems() {

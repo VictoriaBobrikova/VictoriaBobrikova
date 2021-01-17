@@ -3,9 +3,13 @@ package hw3.page;
 import hw3.page.component.abstractPageComponents.HeaderMenuComponent;
 import hw3.page.component.abstractPageComponents.LeftMenuComponent;
 import hw3.page.component.abstractPageComponents.LogInComponent;
+import hw3.utils.WaitActions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractPage {
@@ -35,6 +39,16 @@ public abstract class AbstractPage {
         webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
     }
 
+    public HeaderMenuComponent getHeaderMenuComponent() {
+        return headerMenuComponent;
+    }
+    public LeftMenuComponent getLeftMenuComponent() {
+        return leftMenuComponent;
+    }
+    public LogInComponent getLogInComponent() {
+        return logInComponent;
+    }
+
     public boolean verifyPageUrl(String expUrl) {
         return webDriver.getCurrentUrl().equals(expUrl);
     }
@@ -43,15 +57,15 @@ public abstract class AbstractPage {
         return webDriver.getTitle().equals(expTitle);
     }
 
-    public HeaderMenuComponent getHeaderMenuComponent() {
-        return headerMenuComponent;
+    public  boolean verifyText(List<WebElement> list, List<String> textToVerify) {
+        List<String> listText = new ArrayList<>();
+        for (WebElement menuItem : list) {
+            listText.add(menuItem.getText());
+        }
+        return listText.containsAll(textToVerify);
     }
 
-    public LeftMenuComponent getLeftMenuComponent() {
-        return leftMenuComponent;
-    }
-
-    public LogInComponent getLogInComponent() {
-        return logInComponent;
+    public void pageLoad() {
+        webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
     }
 }

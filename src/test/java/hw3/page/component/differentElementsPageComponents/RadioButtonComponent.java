@@ -12,13 +12,13 @@ public class RadioButtonComponent {
     WaitActions waitActions;
     WebDriver webDriver;
 
+    @FindBy(xpath = "//*[@class=\"label-radio\"]")
+    private List<WebElement> listRadioButtons;
+
     public RadioButtonComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
         waitActions = new WaitActions(webDriver);
     }
-
-    @FindBy(xpath = "//*[@class=\"label-radio\"]")
-    private List<WebElement> listRadioButtons;
 
     public void clickRadioButton(String radioButtonText) {
         for (WebElement radioButton : listRadioButtons) {

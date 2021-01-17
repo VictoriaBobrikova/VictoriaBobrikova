@@ -12,19 +12,18 @@ public class CheckboxComponent {
     WaitActions waitActions;
     WebDriver webDriver;
 
+    @FindBy(xpath = "//*[@class=\"label-checkbox\"]")
+    private List<WebElement> listCheckboxes;
+
     public CheckboxComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
         waitActions = new WaitActions(webDriver);
     }
 
-    @FindBy(xpath = "//*[@class=\"label-checkbox\"]")
-    private List<WebElement> listCheckboxes;
-
     public void clickCheckbox(String checkboxText) {
         for (WebElement checkbox : listCheckboxes) {
             if (checkbox.getText().contains(checkboxText)) {
                 checkbox.click();
-//                waitActions.waitUntilCondition(ex -> checkbox.isSelected());
             }
         }
     }

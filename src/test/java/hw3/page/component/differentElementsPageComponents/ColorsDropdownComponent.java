@@ -12,16 +12,15 @@ public class ColorsDropdownComponent {
     WaitActions waitActions;
     WebDriver webDriver;
 
+    @FindBy(xpath = "//*[@class=\"colors\"]")
+    private WebElement colorsDropdown;
+    @FindBy(xpath = "//*[@class=\"uui-form-element\"]/option")
+    private List<WebElement> listColors;
+
     public ColorsDropdownComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
         waitActions = new WaitActions(webDriver);
     }
-
-    @FindBy(xpath = "//*[@class=\"colors\"]")
-    private WebElement colorsDropdown;
-
-    @FindBy(xpath = "//*[@class=\"uui-form-element\"]/option")
-    private List<WebElement> listColors;
 
     public void openColorsDropdown() {
         colorsDropdown.click();

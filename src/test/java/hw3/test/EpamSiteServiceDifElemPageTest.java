@@ -2,10 +2,12 @@ package hw3.test;
 
 import hw3.page.DifferentElementsPage;
 import hw3.page.MainPage;
-import org.openqa.selenium.By;
+import hw3.utils.WaitActions;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
@@ -35,7 +37,7 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
         mainPage.getHeaderMenuComponent().clickHeaderMenuItem("SERVICE");
         mainPage.getHeaderMenuComponent().waitUntilServiceDropDownMenuIsDisplayed();
         mainPage.getHeaderMenuComponent().clickItemInServiceDropDownMenu("DIFFERENT ELEMENTS");
-        webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
+        differentElementsPage.pageLoad();
         assertTrue(differentElementsPage.verifyPageUrl(urlDifElem));
 //    6. Select checkboxes
         differentElementsPage.getCheckboxComponent().clickCheckbox("Water");
@@ -51,17 +53,15 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
         softAssert.assertTrue(differentElementsPage.getColorsDropdownComponent().verifyColor("Yellow"));
 //    9. Log rows
         //for each checkbox there is an individual log row
-        //checkbox name and its status are corresponding to selected
-        //radio button name and it status is corresponding to selected
-        //dropdown name and selected value is corresponding to selected
-        softAssert.assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'Colors')]"))
-                .getText().contains("Colors: value changed to Yellow"));
-        softAssert.assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'metal')]"))
-                .getText().contains("metal: value changed to Selen"));
-        softAssert.assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'Wind')]"))
-                .getText().contains("Wind: condition changed to true"));
-        softAssert.assertTrue(webDriver.findElement(By.xpath("//li[contains(text(), 'Water')]"))
-                .getText().contains("Water: condition changed to true"));
+        //checkbox, radio button, dropdown name and status are corresponding to selected, each has an individual log row
+        String[] logsTextToVerify = new String[]
+                {"Colors: value changed to Yellow",
+                        "metal: value changed to Selen",
+                        "Wind: condition changed to true",
+                        "Water: condition changed to true"};
+        List<String> listLogsTextToVerify = Arrays.asList(logsTextToVerify);
+        assertTrue(differentElementsPage.verifyText(
+                differentElementsPage.getLogPanelComponent().getListLogPanel(), listLogsTextToVerify));
 //    10. Close Browser in AfterTest
     }
 }
