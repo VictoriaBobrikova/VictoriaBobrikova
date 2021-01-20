@@ -1,6 +1,5 @@
-package hw3.test;
+package hw3;
 
-import hw3.page.DifferentElementsPage;
 import hw3.page.MainPage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -16,18 +15,8 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
 
     @Test
     public void mainPageTest() {
-//    1. Open test site by URL
         MainPage mainPage = new MainPage(webDriver);
-        mainPage.openMainPage();
-        assertTrue(mainPage.verifyPageUrl("https://jdi-testing.github.io/jdi-light/index.html"));
-//    2. Assert Browser title
-        softAssert.assertTrue(mainPage.verifyBrowserTitle("Home Page"));
-//    3. Perform login
-        mainPage.getLogInComponent().login();
-        //to check if user logged in logout button must appear
-        assertTrue(mainPage.getLogInComponent().verifyLogoutButton("LOGOUT"));
-//    4. Assert Username is logged in
-        softAssert.assertTrue(mainPage.getLogInComponent().verifyUsername());
+        openPageLoginVerifyUrlTitleUsername(mainPage);
 //    5. Assert that there are 4 items on the header section are displayed and they have proper texts
         //4 items
         softAssert.assertEquals(mainPage.getHeaderMenuComponent().countItems(), 4);

@@ -3,7 +3,6 @@ package hw3.page;
 import hw3.page.component.abstractPageComponents.HeaderMenuComponent;
 import hw3.page.component.abstractPageComponents.LeftMenuComponent;
 import hw3.page.component.abstractPageComponents.LogInComponent;
-import hw3.utils.WaitActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;

@@ -17,8 +17,10 @@ public class HeaderMenuComponent extends AbstractComponent {
     private List<WebElement> listHeaderMenu;
     @FindBy(xpath = "//*[@class=\"dropdown-menu\"]")
     private WebElement serviceDropDownMenu;
-    @FindBy(xpath = "//*[@class=\"dropdown-menu\"]/li")
-    private List<WebElement> serviceDropDownMenuItems;
+    @FindBy(xpath = "//a[contains(text(),'Service')]")
+    private WebElement serviceHeaderItem;
+    @FindBy(xpath = "//a[contains(@href,'different-elements')]")
+    private WebElement differentElementsInServiceDropdown;
 
     public HeaderMenuComponent(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -37,26 +39,10 @@ public class HeaderMenuComponent extends AbstractComponent {
         return listHeaderMenu.stream().allMatch(WebElement::isDisplayed);
     }
 
-    public void clickHeaderMenuItem(String menuItem) {
-        for (WebElement headerMenuItem : listHeaderMenu) {
-            if (headerMenuItem.getText().contains(menuItem)) {
-                headerMenuItem.click();
-                break;
-            }
-        }
-    }
-
-    public boolean waitUntilServiceDropDownMenuIsDisplayed() {
-        return waitActions.waitUntilCondition(ex -> serviceDropDownMenu.isDisplayed());
-    }
-
-    public void clickItemInServiceDropDownMenu(String menuItem) {
-        for (WebElement dropDownMenuItem : serviceDropDownMenuItems) {
-            if (dropDownMenuItem.getText().contains(menuItem)) {
-                dropDownMenuItem.click();
-                break;
-            }
-        }
+    public void openDifferentElementsInService() {
+        serviceHeaderItem.click();
+        waitActions.waitUntilCondition(ex -> serviceDropDownMenu.isDisplayed());
+        differentElementsInServiceDropdown.click();
         webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
     }
 }
