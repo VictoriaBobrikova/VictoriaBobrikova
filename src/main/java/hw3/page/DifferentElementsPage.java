@@ -1,21 +1,19 @@
 package hw3.page;
 
 import hw3.utils.WaitActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 public class DifferentElementsPage extends AbstractPage {
 
-    @FindBy(xpath = "//label[contains(. ,'Water')]/input")
-    private WebElement waterCheckbox;
-    @FindBy(xpath = "//label[contains(. ,'Wind')]/input")
-    private WebElement windCheckbox;
-    @FindBy(xpath = "//label[contains(. ,'Selen')]/input")
-    private WebElement selenRadioButton;
+    public WaitActions waitActions;
+
     @FindBy(xpath = "//*[@class='panel-body-list logs']/li")
     private List<WebElement> listLogPanel;
     @FindBy(xpath = "//*[@class=\"colors\"]")
@@ -25,18 +23,19 @@ public class DifferentElementsPage extends AbstractPage {
     @FindBy(xpath = "//option[contains(. ,'Yellow')]")
     private WebElement yellowColor;
 
-    WaitActions waitActions;
-
     public DifferentElementsPage(WebDriver webDriver) {
         super(webDriver);
         waitActions = new WaitActions(webDriver);
     }
 
-    public WebElement getWaterCheckbox() { return waterCheckbox; }
-    public WebElement getWindCheckbox() { return windCheckbox; }
-    public WebElement getSelenRadioButton() { return selenRadioButton; }
     public List<WebElement> getListLogPanel() { return listLogPanel; }
     public WebElement getYellowColor() { return yellowColor; }
+
+    public WebElement getElementByText(String elementText) {
+        Formatter formatter = new Formatter();
+        formatter.format("//label[contains(. ,'%s')]/input", elementText);
+        return webDriver.findElement(By.xpath(formatter.toString()));
+    }
 
     public void openColorsDropdown() {
         colorsDropdown.click();

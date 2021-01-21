@@ -8,10 +8,10 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class HeaderMenuComponent extends AbstractComponent {
+public class HeaderMenuComponent implements AbstractComponent {
 
-    WaitActions waitActions;
-    WebDriver webDriver;
+    public WaitActions waitActions;
+    public WebDriver webDriver;
 
     @FindBy(xpath = "//*[@class=\"uui-navigation nav navbar-nav m-l8\"]/li")
     private List<WebElement> listHeaderMenu;

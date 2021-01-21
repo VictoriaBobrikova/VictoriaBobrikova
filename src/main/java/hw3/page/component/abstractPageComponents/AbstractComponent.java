@@ -1,7 +1,7 @@
 package hw3.page.component.abstractPageComponents;
 
-public abstract class AbstractComponent {
+public interface AbstractComponent {
 
-    public abstract int countItems();
-    public abstract boolean itemsAreDisplayed();
+    int countItems();
+    boolean itemsAreDisplayed();
 }

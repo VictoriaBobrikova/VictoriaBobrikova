@@ -10,8 +10,8 @@ import java.util.Properties;
 
 public class LogInComponent {
 
-    WaitActions waitActions;
-    WebDriver webDriver;
+    public WaitActions waitActions;
+    public WebDriver webDriver;
 
     //dropdown menu must be to log in
     @FindBy(xpath = "//*[@class=\"uui-navigation navbar-nav navbar-right\"]")

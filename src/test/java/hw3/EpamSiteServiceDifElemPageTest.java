@@ -26,13 +26,13 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
         differentElementsPage.pageLoad();
         assertTrue(differentElementsPage.verifyPageUrl(urlDifElem));
 //    6. Select checkboxes
-        differentElementsPage.getWaterCheckbox().click();
-        differentElementsPage.getWindCheckbox().click();
-        softAssert.assertTrue(differentElementsPage.getWaterCheckbox().isSelected());
-        softAssert.assertTrue(differentElementsPage.getWaterCheckbox().isSelected());
+        differentElementsPage.getElementByText("Water").click();
+        differentElementsPage.getElementByText("Wind").click();
+        softAssert.assertTrue(differentElementsPage.getElementByText("Water").isSelected());
+        softAssert.assertTrue(differentElementsPage.getElementByText("Wind").isSelected());
 //    7. Select radio
-        differentElementsPage.getSelenRadioButton().click();
-        softAssert.assertTrue(differentElementsPage.getSelenRadioButton().isEnabled());
+        differentElementsPage.getElementByText("Selen").click();
+        softAssert.assertTrue(differentElementsPage.getElementByText("Selen").isEnabled());
 //    8. Select in dropdown
         differentElementsPage.openColorsDropdown();
         differentElementsPage.getYellowColor().click();

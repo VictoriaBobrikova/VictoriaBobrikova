@@ -35,7 +35,6 @@ public abstract class AbstractPage {
     public void openMainPage() {
         String url = "https://jdi-testing.github.io/jdi-light/index.html";
         webDriver.get(url);
-        webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
     }
 
     public HeaderMenuComponent getHeaderMenuComponent() {

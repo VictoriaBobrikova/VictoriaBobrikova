@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class LeftMenuComponent extends AbstractComponent {
+public class LeftMenuComponent implements AbstractComponent {
 
     @FindBy(xpath = "//ul[@class=\"sidebar-menu\"]/li")
     private List<WebElement> listLeftMenu;
