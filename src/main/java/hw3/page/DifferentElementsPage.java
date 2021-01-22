@@ -31,7 +31,7 @@ public class DifferentElementsPage extends AbstractPage {
     public List<WebElement> getListLogPanel() { return listLogPanel; }
     public WebElement getYellowColor() { return yellowColor; }
 
-    public WebElement getElementByText(String elementText) {
+    public WebElement getCheckboxOrRadiobuttonByText(String elementText) {
         Formatter formatter = new Formatter();
         formatter.format("//label[contains(. ,'%s')]/input", elementText);
         return webDriver.findElement(By.xpath(formatter.toString()));
