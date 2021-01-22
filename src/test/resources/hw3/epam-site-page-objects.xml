@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="EPAM site with page objects pattern">
+
+    <test name="EPAM site">
+        <classes>
+            <class name="hw3.EpamSiteMainPageTest"/>
+            <class name="hw3.EpamSiteServiceDifElemPageTest"/>
+        </classes>
+    </test>
+</suite>
