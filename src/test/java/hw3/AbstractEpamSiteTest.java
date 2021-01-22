@@ -1,15 +1,14 @@
 package hw3;
 
 import hw3.page.AbstractPage;
-import hw3.page.MainPage;
+import hw3.utils.PropertiesWorking;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
@@ -24,6 +23,7 @@ public abstract class AbstractEpamSiteTest {
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
+        PropertiesWorking.loadFromPropertiesFile("./src/main/resources/hw3/user-data.properties");
     }
 
     @AfterClass
