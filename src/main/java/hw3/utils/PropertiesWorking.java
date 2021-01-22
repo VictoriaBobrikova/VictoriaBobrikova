@@ -7,8 +7,13 @@ import java.util.Properties;
 
 public class PropertiesWorking {
 
+    private static Properties properties = new Properties();
+
+    public static String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+
     public static Properties loadFromPropertiesFile(String file) {
-        Properties properties = new Properties();
         try (FileInputStream input = new FileInputStream(file)) {
             properties.load(input);
         } catch (FileNotFoundException e) {

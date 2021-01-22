@@ -33,12 +33,8 @@ public class LogInComponent {
     }
 
     public void login() {
-
-        Properties properties = PropertiesWorking
-                .loadFromPropertiesFile("./src/main/resources/hw3/user-data.properties");
-
-        String login = properties.getProperty("login");
-        String password = properties.getProperty("password");
+        String login = PropertiesWorking.getProperty("login");
+        String password = PropertiesWorking.getProperty("password");
 
         dropDownLogin.click();
         //wait until login button appears
@@ -56,9 +52,7 @@ public class LogInComponent {
     }
 
     public boolean verifyUsername() {
-        Properties properties = PropertiesWorking
-                .loadFromPropertiesFile("./src/main/resources/hw3/user-data.properties");
-        String username = properties.getProperty("username");
+        String username = PropertiesWorking.getProperty("username");
         return userName.isDisplayed() && userName.getText().equals(username);
     }
 }
