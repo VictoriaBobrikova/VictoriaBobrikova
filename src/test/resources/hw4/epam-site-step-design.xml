@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="EPAM site with page objects pattern">
+
+    <listeners>
+        <listener class-name="hw4.listeners.AllureListener"></listener>
+    </listeners>
+
+    <test name="EPAM site">
+        <classes>
+            <class name="hw4.EpamSiteMainPageTest"/>
+            <class name="hw4.EpamSiteServiceDifElemPageTest"/>
+        </classes>
+    </test>
+</suite>
