@@ -1,4 +1,4 @@
-package hw4;
+package hw4.tests;
 
 import hw4.steps.ActionStep;
 import hw4.steps.AssertionStep;

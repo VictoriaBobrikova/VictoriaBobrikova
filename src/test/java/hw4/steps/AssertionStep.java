@@ -2,6 +2,7 @@ package hw4.steps;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -38,15 +39,15 @@ public class AssertionStep extends ActionStep {
 
     @Step("{amount} items on the header section should be and have proper text")
     public void assertHeaderSectionItems(int amount, List<String> listHeaderTextToVerify) {
-        softAssert.assertEquals(mainPage.getHeaderMenuComponent().countItems(), amount);
-        softAssert.assertTrue(mainPage.getHeaderMenuComponent().itemsAreDisplayed());
-        softAssert.assertTrue(mainPage.verifyText(
+        Assert.assertEquals(mainPage.getHeaderMenuComponent().countItems(), amount);
+        assertTrue(mainPage.getHeaderMenuComponent().itemsAreDisplayed());
+        assertTrue(mainPage.verifyText(
                 mainPage.getHeaderMenuComponent().getListHeaderMenu(), listHeaderTextToVerify));
     }
     @Step("{amount} images on the Index Page should be")
     public void assertAmountOfIndexPageImgs(int amount){
-        softAssert.assertEquals(mainPage.getBenefitsComponent().countImgs(), amount);
-        softAssert.assertTrue(mainPage.getBenefitsComponent().imgsAreDisplayed());
+        Assert.assertEquals(mainPage.getBenefitsComponent().countImgs(), amount);
+        assertTrue(mainPage.getBenefitsComponent().imgsAreDisplayed());
     }
 
     @Step("{amount} texts on the Index Page under icons should be and have proper text")
@@ -74,9 +75,9 @@ public class AssertionStep extends ActionStep {
 
     @Step("{amount} items in the Left Section should be and have proper text")
     public void assertLeftSectionItems(int amount, List<String> listLeftMenuTextToVerify) {
-        softAssert.assertEquals(mainPage.getLeftMenuComponent().countItems(), amount);
-        softAssert.assertTrue(mainPage.getLeftMenuComponent().itemsAreDisplayed());
-        softAssert.assertTrue(mainPage.verifyText(
+        Assert.assertEquals(mainPage.getLeftMenuComponent().countItems(), amount);
+        assertTrue(mainPage.getLeftMenuComponent().itemsAreDisplayed());
+        assertTrue(mainPage.verifyText(
                 mainPage.getLeftMenuComponent().getListLeftMenu(), listLeftMenuTextToVerify));
     }
 

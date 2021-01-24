@@ -7,8 +7,14 @@
 
     <test name="EPAM site">
         <classes>
-            <class name="hw4.EpamSiteMainPageTest"/>
-            <class name="hw4.EpamSiteServiceDifElemPageTest"/>
+            <class name="hw4.tests.EpamSiteMainPageTest"/>
+            <class name="hw4.tests.EpamSiteServiceDifElemPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Epam site fail">
+        <classes>
+            <class name="hw4.tests.EpamSiteMainPageTestFail"/>
         </classes>
     </test>
 </suite>

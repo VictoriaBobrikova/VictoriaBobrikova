@@ -1,17 +1,24 @@
-package hw4;
+package hw4.tests;
 
+import hw4.listeners.AllureListener;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
+@Listeners({AllureListener.class})
+public class EpamSiteMainPageTestFail extends AbstractEpamSiteTest {
 
-    @Test(description = "Home page tests")
+    @Feature(value = "Home page has header and left menu, benefits info and iframes")
+    @Story(value = "User can see header and left menu, benefits and iframes")
+    @Test(description = "Fail Home page tests - header")
     public void mainPageTest() {
         openPageLoginVerifyUrlTitleUsername();
 //    5. Assert that there are 4 items on the header section are displayed and they have proper texts
-        String[] headerTextToVerify = new String[] {"HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"};
+        String[] headerTextToVerify = new String[] {"HOME", "CONTACT FORM", "SERVICE"};
         List<String> listHeaderTextToVerify = Arrays.asList(headerTextToVerify);
         assertionStep.assertHeaderSectionItems(listHeaderTextToVerify.size(), listHeaderTextToVerify);
 //    6. Assert that there are 4 images on the Index Page and they are displayed
@@ -21,12 +28,12 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
                 "and ideas from successful\n" +
                 "EPAM project",
                 "To be flexible and\n" +
-                "customizable",
+                        "customizable",
                 "To be multiplatform",
                 "Already have good base\n" +
-                "(about 20 internal and\n" +
-                "some external projects),\n" +
-                "wish to get more…"};
+                        "(about 20 internal and\n" +
+                        "some external projects),\n" +
+                        "wish to get more…"};
         List<String> listImageTextToVerify = Arrays.asList(imageTextToVerify);
         assertionStep.assertTextUnderIcons(listImageTextToVerify.size(), listImageTextToVerify);
 //    8. Assert that there is the iframe with “Frame Button” exists
