@@ -16,8 +16,8 @@ public abstract class AbstractEpamSiteTest {
 
     public WebDriver webDriver;
 
-    public ActionStep actionStep;
-    public AssertionStep assertionStep;
+    protected ActionStep actionStep;
+    protected AssertionStep assertionStep;
 
     @BeforeClass
     public void setUp(ITestContext testContext) {
