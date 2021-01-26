@@ -17,14 +17,14 @@ public class AssertionStep extends ActionStep {
         super(webDriver);
     }
 
-    @Step("Assert site URL")
+    @Step("Assert site URL={url}")
     public void assertSiteUrl(String url) {
         assertTrue(mainPage.verifyPageUrl(url));
     }
 
-    @Step("Browser title should be equal \"Home Page\"")
-    public void browserTitleShouldBeHomePage() {
-        assertTrue(mainPage.verifyBrowserTitle("Home Page"));
+    @Step("Browser title should be equal {title}")
+    public void assertBrowserTitle(String title) {
+        assertTrue(mainPage.verifyBrowserTitle(title));
     }
 
     @Step("Check that user logged in: logout button should appear")
@@ -32,9 +32,9 @@ public class AssertionStep extends ActionStep {
         assertTrue(mainPage.getLogInComponent().verifyLogoutButton("LOGOUT"));
     }
 
-    @Step("Check username")
-    public void assertUserName() {
-        assertTrue(mainPage.getLogInComponent().verifyUsername());
+    @Step("Check {username}")
+    public void assertUserName(String username) {
+        assertTrue(mainPage.getLogInComponent().verifyUsername(username));
     }
 
     @Step("{amount} items on the header section should be and have proper text")
@@ -81,8 +81,8 @@ public class AssertionStep extends ActionStep {
                 mainPage.getLeftMenuComponent().getListLeftMenu(), listLeftMenuTextToVerify));
     }
 
-    @Step("{element} {name} is selected")
-    public void checkboxOrRadioButtonIsSelected(String element, String name) {
+    @Step("{name} is selected")
+    public void checkboxOrRadioButtonIsSelected(String name) {
         softAssert.assertTrue(differentElementsPage
                 .getCheckboxOrRadiobuttonByText(name).isSelected());
     }

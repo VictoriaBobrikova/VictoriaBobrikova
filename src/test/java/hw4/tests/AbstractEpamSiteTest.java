@@ -16,8 +16,8 @@ public abstract class AbstractEpamSiteTest {
 
     public WebDriver webDriver;
 
-    ActionStep actionStep;
-    AssertionStep assertionStep;
+    public ActionStep actionStep;
+    public AssertionStep assertionStep;
 
     @BeforeClass
     public void setUp(ITestContext testContext) {
@@ -38,18 +38,18 @@ public abstract class AbstractEpamSiteTest {
         webDriver.close();
     }
 
-    public void openPageLoginVerifyUrlTitleUsername() {
+    public void openPageLoginVerifyUrlTitleUsername(String login, String password, String username) {
 //    1. Open test site by URL
-        actionStep.openHomePage();
+        actionStep.openSitePage("index");
         String homePageUrl = "https://jdi-testing.github.io/jdi-light/index.html";
         assertionStep.assertSiteUrl(homePageUrl);
 //    2. Assert Browser title
-        assertionStep.browserTitleShouldBeHomePage();
+        assertionStep.assertBrowserTitle("Home Page");
 //    3. Perform login
-        actionStep.performLogin();
+        actionStep.performLogin(login, password);
         //to check if user logged in logout button should appear
         assertionStep.afterLoginLogoutButtonShouldAppear();
 //    4. Assert Username is logged in
-        assertionStep.assertUserName();
+        assertionStep.assertUserName(username);
     }
 }

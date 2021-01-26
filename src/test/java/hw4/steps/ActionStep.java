@@ -30,8 +30,8 @@ public class ActionStep extends AbstractStep {
         differentElementsPage.pageLoad();
     }
 
-    @Step("Select {element} {name}")
-    public void selectCheckboxOrRadioButton(String element, String name) {
+    @Step("Select {name}")
+    public void selectCheckboxOrRadioButton(String name) {
         differentElementsPage.getCheckboxOrRadiobuttonByText(name).click();
     }
 

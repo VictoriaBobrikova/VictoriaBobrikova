@@ -1,5 +1,6 @@
 package hw4.tests;
 
+import hw4.utils.PropertiesWorking;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.Test;
@@ -14,19 +15,20 @@ public class EpamSiteServiceDifElemPageTest extends AbstractEpamSiteTest {
     @Story(value = "Logged in user can choose element, metal and color")
     @Test(description = "Different elements page tests")
     public void serviceDifElemPageTest() {
-        openPageLoginVerifyUrlTitleUsername();
+        openPageLoginVerifyUrlTitleUsername(PropertiesWorking.getProperty("login"),
+                PropertiesWorking.getProperty("password"), PropertiesWorking.getProperty("username"));
 //    5. Open through the header menu Service -> Different Elements Page
         String difElemUrl = "https://jdi-testing.github.io/jdi-light/different-elements.html";
         actionStep.clickDifferentElementsInServiceMenu();
         assertionStep.assertSiteUrl(difElemUrl);
 //    6. Select checkboxes
-        actionStep.selectCheckboxOrRadioButton("Checkbox", "Water");
-        actionStep.selectCheckboxOrRadioButton("Checkbox", "Wind");
-        assertionStep.checkboxOrRadioButtonIsSelected("Checkbox", "Water");
-        assertionStep.checkboxOrRadioButtonIsSelected("Checkbox", "Wind");
+        actionStep.selectCheckboxOrRadioButton("Water");
+        actionStep.selectCheckboxOrRadioButton("Wind");
+        assertionStep.checkboxOrRadioButtonIsSelected("Water");
+        assertionStep.checkboxOrRadioButtonIsSelected("Wind");
 //    7. Select radio
-        actionStep.selectCheckboxOrRadioButton("Radio button", "Selen");
-        assertionStep.checkboxOrRadioButtonIsSelected("Radio button", "Selen");
+        actionStep.selectCheckboxOrRadioButton("Selen");
+        assertionStep.checkboxOrRadioButtonIsSelected("Selen");
 //    8. Select in dropdown
         actionStep.openDropdownWithColors();
         actionStep.clickColor("Yellow");

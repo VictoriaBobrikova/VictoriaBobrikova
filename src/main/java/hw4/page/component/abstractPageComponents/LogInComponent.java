@@ -30,10 +30,7 @@ public class LogInComponent {
         waitActions = new WaitActions(webDriver);
     }
 
-    public void login() {
-        String login = PropertiesWorking.getProperty("login");
-        String password = PropertiesWorking.getProperty("password");
-
+    public void login(String login, String password) {
         dropDownLogin.click();
         //wait until login button appears
         waitActions.waitUntilCondition(ex -> loginButton.isDisplayed());
@@ -49,8 +46,7 @@ public class LogInComponent {
         return logoutButton.getText().equals(expButton);
     }
 
-    public boolean verifyUsername() {
-        String username = PropertiesWorking.getProperty("username");
+    public boolean verifyUsername(String username) {
         return userName.isDisplayed() && userName.getText().equals(username);
     }
 }

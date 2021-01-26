@@ -32,8 +32,8 @@ public abstract class AbstractPage {
         PageFactory.initElements(webDriver, logInComponent);
     }
 
-    public void openMainPage() {
-        String url = "https://jdi-testing.github.io/jdi-light/index.html";
+    public void openPage(String pageName) {
+        String url = "https://jdi-testing.github.io/jdi-light/" + pageName +".html";
         webDriver.get(url);
     }
 

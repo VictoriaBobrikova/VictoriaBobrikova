@@ -1,5 +1,6 @@
 package hw4.tests;
 
+import hw4.utils.PropertiesWorking;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.Test;
@@ -13,7 +14,8 @@ public class EpamSiteMainPageTest extends AbstractEpamSiteTest {
     @Story(value = "User can see header and left menus, benefits and iframes")
     @Test(description = "Home page tests")
     public void mainPageTest() {
-        openPageLoginVerifyUrlTitleUsername();
+        openPageLoginVerifyUrlTitleUsername(PropertiesWorking.getProperty("login"),
+                PropertiesWorking.getProperty("password"), PropertiesWorking.getProperty("username"));
 //    5. Assert that there are 4 items on the header section are displayed and they have proper texts
         String[] headerTextToVerify = new String[] {"HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS"};
         List<String> listHeaderTextToVerify = Arrays.asList(headerTextToVerify);
