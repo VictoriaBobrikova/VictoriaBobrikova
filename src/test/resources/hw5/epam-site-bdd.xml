@@ -7,8 +7,7 @@
 
     <test name="EPAM site">
         <classes>
-            <class name="hw5.tests.EpamSiteMainPageTest"/>
-            <class name="hw5.tests.EpamSiteServiceDifElemPageTest"/>
+            <class name="hw5.RunAcceptanceIT"/>
         </classes>
     </test>>
 </suite>

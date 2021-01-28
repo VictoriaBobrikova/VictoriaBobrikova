@@ -5,20 +5,16 @@ Feature: Different Elements page of Service
 
   Background:
     Given I am on JDI GitHub site Home page
-    And I logged in as user 'Roman Iovlev'
+    And I logged in as user ROMAN_IOVLEV
     And I click on "Service" button in Header
     And I click 'Different elements' button in Service dropdown
 
-  Scenario Outline: Select checkboxes, radio button and color test
+  Scenario: Select checkboxes, radio button and color test
     When I select 'Water' element
     And I select 'Wind' element
     And I select 'Selen' element
     And I select 'Yellow' color in colors dropdown
-    Then log row number '<row number>' has '<text>' text
-
-    Examples:
-      | text                             |row number|
-      | Water: condition changed to true |4         |
-      | Wind: condition changed to true  |3         |
-      | Colors: value changed to Yellow  |2         |
-      | metal: value changed to Selen    |1         |
+    Then log row number 0 has 'Colors: value changed to Yellow' text
+    And log row number 1 has 'metal: value changed to Selen' text
+    And log row number 2 has 'Wind: condition changed to true' text
+    And log row number 3 has 'Water: condition changed to true' text

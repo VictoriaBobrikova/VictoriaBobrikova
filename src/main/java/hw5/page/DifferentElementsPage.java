@@ -1,10 +1,12 @@
 package hw5.page;
 
 import hw4.utils.WaitActions;
+import hw5.page.component.servicePagesComponent.LogPanelComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.Formatter;
@@ -14,19 +16,19 @@ public class DifferentElementsPage extends AbstractPage {
 
     public WaitActions waitActions;
 
-    @FindBy(xpath = "//*[@class='panel-body-list logs']/li")
-    private List<WebElement> listLogPanel;
     @FindBy(xpath = "//*[@class=\"colors\"]")
     private WebElement colorsDropdown;
     @FindBy(xpath = "//*[@class=\"uui-form-element\"]/option")
     private List<WebElement> listColors;
 
+    private LogPanelComponent logPanelComponent;
+
     public DifferentElementsPage(WebDriver webDriver) {
         super(webDriver);
         waitActions = new WaitActions(webDriver);
+        logPanelComponent = new LogPanelComponent();
+        PageFactory.initElements(webDriver, logPanelComponent);
     }
-
-    public List<WebElement> getListLogPanel() { return listLogPanel; }
 
     public WebElement getColor(String color) {
         Formatter formatter = new Formatter();

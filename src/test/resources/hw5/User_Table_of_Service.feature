@@ -1,13 +1,13 @@
 Feature: User Table page of Service
 
 Background:
-  Given I open JDI GitHub site
-  And I login as user "Roman Iovlev"
+  Given I am on JDI GitHub site Home page
+  And I logged in as user ROMAN_IOVLEV
 
 Scenario Outline: User Table Page test
   When I click on "Service" button in Header
-  And I click on "User Table" button in Service dropdown
-  Then "User Table" page should be opened
+  And I click 'User Table' button in Service dropdown
+  Then 'User Table' page should be opened
   And 6 Number Type Dropdowns should be displayed on Users Table on User Table Page
   And 6 Usernames should be displayed on Users Table on User Table Page
   And 6 Description texts under images should be displayed on Users Table on User Table Page
