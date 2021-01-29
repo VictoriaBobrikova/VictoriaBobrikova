@@ -30,6 +30,10 @@ public class DifferentElementsPage extends AbstractPage {
         PageFactory.initElements(webDriver, logPanelComponent);
     }
 
+    public LogPanelComponent getLogPanelComponent() {
+        return logPanelComponent;
+    }
+
     public WebElement getColor(String color) {
         Formatter formatter = new Formatter();
         formatter.format("//option[contains(. ,'%s')]", color);

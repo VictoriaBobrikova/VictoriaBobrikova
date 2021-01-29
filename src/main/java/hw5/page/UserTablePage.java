@@ -29,6 +29,8 @@ public class UserTablePage extends AbstractPage {
         PageFactory.initElements(webDriver, logPanelComponent);
     }
 
+    public LogPanelComponent getLogPanelComponent() { return logPanelComponent; }
+
     public int countDropdown() { return dropdowns.size(); }
 
     public int countListCheckboxes() { return listCheckboxes.size(); }
@@ -37,15 +39,35 @@ public class UserTablePage extends AbstractPage {
 
     public int countListTextsUnderImgs() { return listTextsUnderImgs.size(); }
 
-    public void openDropdownForUser(String userName) {
+    public List<WebElement> openDropdownForUserAndGetOptions(String userName) {
         Formatter formatter = new Formatter();
         formatter.format("//tr[contains(. ,'%s')]//select", userName);
         webDriver.findElement(By.xpath(formatter.toString())).click();
+        formatter.format("//tr[contains(. ,'%s')]//option", userName);
+        return webDriver.findElements(By.xpath(formatter.toString()));
     }
 
     public void clickCheckboxForUser(String userName) {
         Formatter formatter = new Formatter();
         formatter.format("//tr[contains(. ,'%s')]//input", userName);
-        webDriver.findElement(By.xpath(formatter.toString()));
+        webDriver.findElement(By.xpath(formatter.toString())).click();
+    }
+
+    public String getUserNumber(String number) {
+        Formatter formatter = new Formatter();
+        formatter.format("//td[text()='%s']", number);
+        return webDriver.findElement(By.xpath(formatter.toString())).getText();
+    }
+
+    public String getUsernameByUserNumber(String number) {
+        Formatter formatter = new Formatter();
+        formatter.format("//tr[contains(. ,'%s')]//a", number);
+        return webDriver.findElement(By.xpath(formatter.toString())).getText();
+    }
+
+    public String getDescriptionByUserNumber(String number) {
+        Formatter formatter = new Formatter();
+        formatter.format("//tr[contains(. ,'%s')]//span", number);
+        return webDriver.findElement(By.xpath(formatter.toString())).getText();
     }
 }

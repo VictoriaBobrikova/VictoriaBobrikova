@@ -14,7 +14,8 @@ Feature: Different Elements page of Service
     And I select 'Wind' element
     And I select 'Selen' element
     And I select 'Yellow' color in colors dropdown
-    Then log row number 0 has 'Colors: value changed to Yellow' text
-    And log row number 1 has 'metal: value changed to Selen' text
-    And log row number 2 has 'Wind: condition changed to true' text
-    And log row number 3 has 'Water: condition changed to true' text
+    Then log rows have text:
+    | Colors: value changed to Yellow   |
+    | metal: value changed to Selen     |
+    | Wind: condition changed to true   |
+    | Water: condition changed to true  |

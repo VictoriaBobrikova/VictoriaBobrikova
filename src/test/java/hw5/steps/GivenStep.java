@@ -32,6 +32,4 @@ public class GivenStep extends AbstractBaseStep {
     public void iClickButtonInServiceDropdown(String buttonName) {
         mainPage.getHeaderMenuComponent().openItemInServiceDropdown(buttonName);
     }
-
-
 }
