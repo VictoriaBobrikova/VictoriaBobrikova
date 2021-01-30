@@ -20,9 +20,9 @@ Scenario: User Table Page test
     | 1      | Roman            | Wolverine                          |
     | 2      | Sergey Ivan      | Spider Man                         |
     | 3      | Vladzimir        | Punisher                           |
-    | 4      | Helen Bennett    | Captain America \nsome description |
-    | 5      | Yoshi Tannamuri  | Cyclope \nsome description         |
-    | 6      | Giovanni Rovelli | Hulk\nsome description             |
+    | 4      | Helen Bennett    | Captain America some description |
+    | 5      | Yoshi Tannamuri  | Cyclope some description         |
+    | 6      | Giovanni Rovelli | Hulk some description             |
   And droplist should contain in column Type for user 'Roman':
     | Values          |
     | Admin           |

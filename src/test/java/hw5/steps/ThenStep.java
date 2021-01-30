@@ -60,7 +60,7 @@ public class ThenStep extends AbstractBaseStep {
                     userTable.getUserTableNumber().trim());
             assertEquals(userTablePage.getUsernameByUserNumber(userTable.getUserTableNumber()).trim(),
                     userTable.getUserTableUserName().trim());
-            assertEquals(userTablePage.getDescriptionByUserNumber(userTable.getUserTableNumber()).trim(),
+            assertEquals(clearString(userTablePage.getDescriptionByUserNumber(userTable.getUserTableNumber())),
                     userTable.getUserTableDescription().trim());
         }
     }
@@ -75,5 +75,9 @@ public class ThenStep extends AbstractBaseStep {
     public void logRowHasTextInLogSection(int rowNumber, String text) {
         assertEquals(userTablePage.getLogPanelComponent()
                 .getListLogPanel().get(rowNumber-1).getText().substring(9), text);
+    }
+
+    private String clearString(String str) {
+        return str.replace("\n", " ").trim();
     }
 }
