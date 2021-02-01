@@ -1,10 +1,12 @@
 package hw6.entities;
 
+import com.epam.jdi.tools.DataClass;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import hw6.utils.ReadJsonFileData;
 
 import java.util.List;
 
-public class MetalsAndColors {
+public class MetalsAndColors extends DataClass<ReadJsonFileData> {
 
     @JsonProperty("summary")
     private List<String> summary;
@@ -20,6 +22,9 @@ public class MetalsAndColors {
 
     @JsonProperty("vegetables")
     private List<String> vegetables;
+
+    public MetalsAndColors() {
+    }
 
     public MetalsAndColors(List<String> summary, List<String> elements,
                            String color, String metals, List<String> vegetables) {

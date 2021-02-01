@@ -1,4 +1,4 @@
-package hw6.dataProvider;
+package hw6.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,9 +13,7 @@ import java.util.Map;
 
 public class ReadJsonFileData {
 
-    private static String filePath = "JDI_ex8_metalsColorsDataSet.json";
-
-    public static List<MetalsAndColors> readJson() {
+    public static List<MetalsAndColors> readJson(String filePath) {
 
         List<MetalsAndColors> listDataMetalsAndColors = new ArrayList<>();
 

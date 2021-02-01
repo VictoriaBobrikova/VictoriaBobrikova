@@ -26,6 +26,4 @@ public class EpamSite {
     public static String getUsername() {
         return homePage.getUsername();
     }
-
-
 }
