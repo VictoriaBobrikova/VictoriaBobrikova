@@ -74,4 +74,8 @@ public class MetalsAndColors extends DataClass<ReadJsonFileData> {
     public void setVegetables(List<String> vegetables) {
         this.vegetables = vegetables;
     }
+
+    public int getSumOfSelectedSummaryDigits() {
+        return Integer.parseInt(summary.get(0)) + Integer.parseInt(summary.get(1));
+    }
 }

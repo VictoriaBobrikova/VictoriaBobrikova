@@ -25,6 +25,6 @@ public class EpamSiteMetalsAndColorsPageTest extends AbstractEpamSiteTest{
         metalsAndColorsPage.isOpened();
         metalsAndColorsPage.metalsAndColorsPageForm.fillForm(metalsAndColors);
         metalsAndColorsPage.metalsAndColorsPageForm.submit();
-        metalsAndColorsPage.logResults.checkResults();
+        metalsAndColorsPage.logResults.checkResults(metalsAndColors);
     }
 }
