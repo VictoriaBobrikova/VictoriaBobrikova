@@ -1,4 +1,4 @@
-package hw5.forDataTables;
+package hw5.dataTransformers;
 
 public class UserTable {
     private String userTableNumber;

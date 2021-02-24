@@ -1,7 +1,7 @@
 package hw5.steps;
 
+import hw5.dataTransformers.TypeTransformation;
 import hw5.enums.User;
-import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
@@ -12,15 +12,10 @@ public class GivenStep extends AbstractBaseStep {
         mainPage.openPage("index");
     }
 
-    @ParameterType(".*")
-    public User user(String userName) {
-        return User.valueOf(userName);
-    }
-
     @And("I logged in as user {user}")
     public void iLoggedInAsUser(User user) {
-        mainPage.getLogInComponent().login(User.valueOf("ROMAN_IOVLEV").getLogin(),
-                User.valueOf("ROMAN_IOVLEV").getPassword());
+        mainPage.getLogInComponent().login(user.getLogin(),
+                user.getPassword());
     }
 
     @And("I click on \"Service\" button in Header")

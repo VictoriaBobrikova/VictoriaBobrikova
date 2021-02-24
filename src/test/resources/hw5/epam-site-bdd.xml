@@ -2,12 +2,12 @@
 <suite name="EPAM site with BDD pattern and Cucumber">
 
     <listeners>
-        <listener class-name="hw5.listeners.AllureListener"></listener>
+        <listener class-name="hw5.listeners.AllureListener"/>
     </listeners>
 
     <test name="EPAM site">
         <classes>
             <class name="hw5.RunAcceptanceIT"/>
         </classes>
-    </test>>
+    </test>
 </suite>

@@ -1,13 +1,12 @@
 package hw5.steps;
 
-import hw5.forDataTables.UserTable;
-import io.cucumber.java.DataTableType;
+import hw5.dataTransformers.TypeTransformation;
+import hw5.dataTransformers.UserTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -43,14 +42,6 @@ public class ThenStep extends AbstractBaseStep {
     @And("{int} checkboxes should be displayed on Users Table")
     public void checkboxesShouldBeDisplayedOnUsersTable(int checkboxesNumber) {
         assertEquals(userTablePage.countListCheckboxes(), checkboxesNumber);
-    }
-
-    @DataTableType
-    public UserTable userTableEntryTransformer(Map<String, String> entry) {
-        return new UserTable(
-                entry.get("Number"),
-                entry.get("User"),
-                entry.get("Description"));
     }
 
     @And("User table should contain values:")

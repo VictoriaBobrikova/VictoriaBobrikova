@@ -6,11 +6,11 @@ import hw5.page.UserTablePage;
 import hw5.services.driver.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 
-public class AbstractBaseStep {
+public abstract class AbstractBaseStep {
 
-    public MainPage mainPage;
-    public DifferentElementsPage differentElementsPage;
-    public UserTablePage userTablePage;
+    protected MainPage mainPage;
+    protected DifferentElementsPage differentElementsPage;
+    protected UserTablePage userTablePage;
 
     protected AbstractBaseStep() {
         WebDriver webDriver = WebDriverSingleton.getDriver();
